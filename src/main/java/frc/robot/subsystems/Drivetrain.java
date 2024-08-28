@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.autonomous.DriveForward;
+import frc.robot.commands.autonomous.DriveInterval;
 
 public class Drivetrain extends SubsystemBase {
     public final PWMSparkMax sparkMax1;
@@ -24,5 +25,9 @@ public class Drivetrain extends SubsystemBase {
 
     public Command driveForwardCommand() {
         return new DriveForward(this);
+    }
+
+    public Command driveIntervalCommand() {
+        return new DriveInterval(this);
     }
 }

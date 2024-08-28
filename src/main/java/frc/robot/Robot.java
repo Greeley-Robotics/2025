@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private Command m_driveForwardAuto;
+  private Command m_driveIntervalAuto;
 
   private RobotContainer m_robotContainer;
 
@@ -57,6 +58,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_driveForwardAuto = m_robotContainer.getDriveForwardAuto();
+    m_driveIntervalAuto = m_robotContainer.getDriveIntervalAuto();
     // schedule the autonomous command (example)
     if (m_driveForwardAuto != null) {
       m_driveForwardAuto.schedule();

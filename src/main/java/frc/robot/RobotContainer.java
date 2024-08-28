@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.teleoperated.ArcadeDrive;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -32,6 +33,12 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+
+    System.out.println("DEFAULT ARCADE DRIVE COMMAND! (TELEOPERATED)!");
+    m_drivetrain.setDefaultCommand(new ArcadeDrive(m_drivetrain,
+      () -> -m_driverController.getRawAxis(OperatorConstants.kArcadeDriveSpeedAxis),
+      () -> m_driverController.getRawAxis(OperatorConstants.kArcadeDriveTurnAxis)
+    ));
   }
 
   /**
@@ -55,5 +62,9 @@ public class RobotContainer {
   public Command getDriveForwardAuto() {
     // An example command will be run in autonomous
     return Autos.driveForwardAuto(m_drivetrain);
+  }
+
+  public Command getDriveIntervalAuto() {
+    return Autos.driveIntervalAuto(m_drivetrain);
   }
 }
