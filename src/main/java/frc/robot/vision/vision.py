@@ -2,7 +2,7 @@ import cv2
 
 from ultralytics import solutions
 
-cap = cv2.VideoCapture("2024_Crescendo_Vid.mp4")
+cap = cv2.VideoCapture("people_walking.mp4")
 assert cap.isOpened(), "Error reading video file"
 w, h, fps = (int(cap.get(x)) for x in (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT, cv2.CAP_PROP_FPS))
 
