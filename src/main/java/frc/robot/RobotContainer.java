@@ -75,4 +75,8 @@ public class RobotContainer {
   public Command getDriveIntervalAuto() {
     return Autos.driveIntervalAuto(m_drivetrain);
   }
+  
+  public Command getIntakeAuto() {
+    return Autos.intakeAuto(m_intake);
+  }
 }
