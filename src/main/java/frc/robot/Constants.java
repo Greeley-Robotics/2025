@@ -26,6 +26,10 @@ public final class Constants {
     public static final int kMotorControllerPort3 = 3;
   }
 
+  public static class IntakeConstants {
+    public static final int kIntakeMotorPort = 4;
+  }
+
   public static class AutonomousConstants {
     public static final double kAutoDriveForwardSpeed = .5;
     public static final double kAutoDriveIntervalSpeed = .5;
