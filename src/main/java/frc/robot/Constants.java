@@ -28,10 +28,13 @@ public final class Constants {
 
   public static class IntakeConstants {
     public static final int kIntakeMotorPort = 4;
+    public static final double kIntakeMotorSpeed = .5;
   }
 
   public static class AutonomousConstants {
     public static final double kAutoDriveForwardSpeed = .5;
     public static final double kAutoDriveIntervalSpeed = .5;
+
+    public static final double kAutoIntakeDuration = 5;
   }
 }
