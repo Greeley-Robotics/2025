@@ -7,10 +7,14 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.teleoperated.ArcadeDrive;
+import frc.robot.commands.teleoperated.IntakeCommand;
+import frc.robot.commands.teleoperated.ReverseIntakeCommand;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -28,6 +32,7 @@ public class RobotContainer {
       new Joystick(OperatorConstants.kDriverControllerPort);
 
   private final Drivetrain m_drivetrain = new Drivetrain(m_driverController);
+  private final Intake m_intake = new Intake();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -51,7 +56,10 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-
+    new JoystickButton(m_driverController, 1)
+                      .whileTrue(new IntakeCommand(m_intake));
+    new JoystickButton(m_driverController, 2)
+                      .whileTrue(new ReverseIntakeCommand(m_intake));
   }
 
   /**
