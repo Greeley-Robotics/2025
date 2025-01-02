@@ -20,10 +20,10 @@ public final class Constants {
   }
 
   public static class DrivetrainConstants {
-    public static final int kMotorControllerPort0 = 0;
-    public static final int kMotorControllerPort1 = 1;
-    public static final int kMotorControllerPort2 = 2;
-    public static final int kMotorControllerPort3 = 3;
+    public static final int kMotorControllerPort0LeftLeader = 0;
+    public static final int kMotorControllerPort1LeftFollower = 1;
+    public static final int kMotorControllerPort2RightLeader = 2;
+    public static final int kMotorControllerPort3RightFollower = 3;
   }
 
   public static class AutonomousConstants {

@@ -12,6 +12,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -21,18 +27,19 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  
-
+  private final GenericEntry joystickEntry;
   // Joystick or Controller
   private final Joystick m_driverController =
       new Joystick(OperatorConstants.kDriverControllerPort);
-
+      
   private final Drivetrain m_drivetrain = new Drivetrain(m_driverController);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    ShuffleboardTab joystickTab = Shuffleboard.getTab("Joystick Tab");
+    joystickEntry = joystickTab.add("Joystick", 0).getEntry();
 
     System.out.println("DEFAULT ARCADE DRIVE COMMAND! (TELEOPERATED)!");
     m_drivetrain.setDefaultCommand(new ArcadeDrive(m_drivetrain,

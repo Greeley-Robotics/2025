@@ -27,10 +27,10 @@ public class DrivetrainNT extends SubsystemBase {
     private final NetworkTableEntry nt_SparkMaxSpeed4;
 
     public DrivetrainNT(Joystick controller) {
-        sparkMax1 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort0);
-        sparkMax2 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort1);
-        sparkMax3 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort2);
-        sparkMax4 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort3);
+        sparkMax1 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort0LeftLeader);
+        sparkMax2 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort1LeftFollower);
+        sparkMax3 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort2RightLeader);
+        sparkMax4 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort3RightFollower);
 
         // Initialize Shuffleboard tab and entries
         NetworkTable drivetrainTable = NetworkTableInstance.getDefault().getTable("Shuffleboard/Drivetrain");

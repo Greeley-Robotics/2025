@@ -12,14 +12,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.Robot;
 import frc.robot.commands.autonomous.DriveForward;
 import frc.robot.commands.autonomous.DriveInterval;
 
+
 public class Drivetrain extends SubsystemBase {
-    public final PWMSparkMax sparkMax1;
-    public final PWMSparkMax sparkMax2;
-    public final PWMSparkMax sparkMax3;
-    public final PWMSparkMax sparkMax4;
+    
+    public final PWMSparkMax leftLeader = Robot.getLeftLeader();
+    public final PWMSparkMax leftFollower = Robot.getLeftFollower();
+    public final PWMSparkMax rightLeader = Robot.getRightLeader();
+    public final PWMSparkMax rightFollower = Robot.getRightFollower();
+    
 
     private final GenericEntry nt_SparkMaxSpeed1;
     private final GenericEntry nt_SparkMaxSpeed2;
@@ -27,10 +31,14 @@ public class Drivetrain extends SubsystemBase {
     private final GenericEntry nt_SparkMaxSpeed4;
 
     public Drivetrain(Joystick controller) {
-        sparkMax1 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort0);
-        sparkMax2 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort1);
-        sparkMax3 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort2);
-        sparkMax4 = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort3);
+        
+        /** 
+        leftLeader = Robot.getLeftLeader();
+        leftFollower = Robot.getLeftFollower();
+        rightLeader = Robot.getRightLeader();
+        rightFollower = Robot.getRightFollower();
+        */
+        
 
         // Initialize Shuffleboard tab and entries
         ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
@@ -38,15 +46,20 @@ public class Drivetrain extends SubsystemBase {
         nt_SparkMaxSpeed2 = tab.add("Motor 2 Speed", 0).getEntry();
         nt_SparkMaxSpeed3 = tab.add("Motor 3 Speed", 0).getEntry();
         nt_SparkMaxSpeed4 = tab.add("Motor 4 Speed", 0).getEntry();
+
     }
+
+    PWMSparkMax m_motorRight = new PWMSparkMax(0);
+
+
 
     @Override
     public void periodic() {
         // Log motor speeds to shuffleboard
-        nt_SparkMaxSpeed1.setDouble(sparkMax1.get());
-        nt_SparkMaxSpeed2.setDouble(sparkMax2.get());
-        nt_SparkMaxSpeed3.setDouble(sparkMax3.get());
-        nt_SparkMaxSpeed4.setDouble(sparkMax4.get());
+        nt_SparkMaxSpeed1.setDouble(Robot.getLeftLeader().get());
+        nt_SparkMaxSpeed2.setDouble(Robot.getRightLeader().get());
+        nt_SparkMaxSpeed1.setDouble(Robot.getLeftFollower().get());
+        nt_SparkMaxSpeed2.setDouble(Robot.getRightFollower().get());
     }
 
     public Command driveForwardCommand() {

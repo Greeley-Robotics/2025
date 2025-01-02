@@ -23,6 +23,10 @@ public class ArcadeDrive extends Command {
         System.out.println("ARCADE DRIVE HAS STARTED!!!");
     }
 
+
+    /*
+     *  RYAN IDK WHAT THIS DOES SO IM NOT GOING TO TOUCH IT
+     */
     @Override
     public void execute() {
         double realTimeSpeed = speedFunction.get();
@@ -31,10 +35,13 @@ public class ArcadeDrive extends Command {
         double left = realTimeSpeed + realTimeTurn;
         double right = realTimeSpeed - realTimeTurn;
 
-        m_drivetrain.sparkMax1.set(left);
-        m_drivetrain.sparkMax2.set(left);
-        m_drivetrain.sparkMax3.set(-right);
-        m_drivetrain.sparkMax4.set(-right);
+        /*
+         * THIS LOGIC WILL MOST LIKELY NOT WORK
+         */
+        m_drivetrain.leftLeader.set(left);
+        //m_drivetrain.leftFollower.set(left);
+        m_drivetrain.rightLeader.set(-right);
+        //m_drivetrain.rightFollower.set(-right);
     }
 
     @Override

@@ -5,8 +5,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Constants.DrivetrainConstants;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -15,10 +18,40 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Command m_driveForwardAuto;
-  private Command m_driveIntervalAuto;
+  /*
+   * Initialize the motors for the Differential Drivetrain within the Robots Class
+   */
+    public final static PWMSparkMax leftLeader = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort0LeftLeader);
+    public final static PWMSparkMax leftFollower = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort1LeftFollower);
+    public final static PWMSparkMax rightLeader = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort2RightLeader);
+    public final static PWMSparkMax rightFollower = new PWMSparkMax(DrivetrainConstants.kMotorControllerPort3RightFollower);
+    public DifferentialDrive m_robotDrive;
+        
+        
+          private Command m_driveForwardAuto;
+          private Command m_driveIntervalAuto;
+        
+          private RobotContainer m_robotContainer;
+        
+  public Robot() {
+    
+  }
+    
+      public static PWMSparkMax getLeftLeader(){
+        return leftLeader;
+      }
+      public static PWMSparkMax getRightLeader(){
+        return rightLeader;
+      }
+      public static PWMSparkMax getLeftFollower(){
+        return leftFollower;
+      }
+      public static PWMSparkMax getRightFollower(){
+        return rightFollower;
+      }
 
-  private RobotContainer m_robotContainer;
+
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -28,7 +61,21 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    
     m_robotContainer = new RobotContainer();
+
+    /*
+     * Sets up the differential drive aspect of the code
+     */
+    leftLeader.addFollower(leftFollower);
+    rightLeader.addFollower(rightFollower);
+
+    // We need to invert one side of the drivetrain so that positive voltages
+    // result in both sides moving forward. Depending on how your robot's
+    // gearbox is constructed, you might have to invert the left side instead.
+    rightLeader.setInverted(true);
+
+    m_robotDrive = new DifferentialDrive(leftLeader::set, rightLeader::set);
   }
 
   /**

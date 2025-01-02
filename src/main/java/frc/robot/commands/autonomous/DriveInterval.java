@@ -33,24 +33,25 @@ public class DriveInterval extends Command {
         }
 
         if (m_motorOn) {
-            m_drivetrain.sparkMax1.set(valToSet);
-            m_drivetrain.sparkMax2.set(valToSet);
-            m_drivetrain.sparkMax3.set(-valToSet);
-            m_drivetrain.sparkMax4.set(-valToSet);
+            // Changed all values to positive because they are set to negative because of setInverted in Robot class
+            m_drivetrain.leftLeader.set(valToSet);
+            //m_drivetrain.leftFollower.set(valToSet);
+            m_drivetrain.rightLeader.set(valToSet);
+            //m_drivetrain.rightFollower.set(valToSet);
         } else {
-            m_drivetrain.sparkMax1.set(0);
-            m_drivetrain.sparkMax2.set(0);
-            m_drivetrain.sparkMax3.set(0);
-            m_drivetrain.sparkMax4.set(0);
+            m_drivetrain.leftLeader.set(0);
+            //m_drivetrain.leftFollower.set(0);
+            m_drivetrain.rightLeader.set(0);
+            //m_drivetrain.rightFollower.set(0);
         }
     }
 
     @Override 
     public void end(boolean interrupted) {
-        m_drivetrain.sparkMax1.stopMotor();
-        m_drivetrain.sparkMax2.stopMotor();
-        m_drivetrain.sparkMax3.stopMotor();
-        m_drivetrain.sparkMax4.stopMotor();
+        m_drivetrain.leftLeader.stopMotor();
+        //m_drivetrain.leftFollower.stopMotor();
+        m_drivetrain.rightLeader.stopMotor();
+        //m_drivetrain.rightFollower.stopMotor();
         m_timer.stop();
     }   
 
