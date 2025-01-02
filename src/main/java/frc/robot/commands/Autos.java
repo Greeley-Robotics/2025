@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Intake;
 
 public final class Autos {
   /** Example static factory for an autonomous command. */
@@ -15,6 +16,10 @@ public final class Autos {
 
   public static Command driveIntervalAuto(Drivetrain subsystem) {
     return subsystem.driveIntervalCommand();
+  }
+
+  public static Command intakeAuto(Intake subsystem) {
+    return subsystem.autoIntakeCommand();
   }
 
   private Autos() {
